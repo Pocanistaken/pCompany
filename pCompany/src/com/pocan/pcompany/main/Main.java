@@ -10,8 +10,10 @@ import com.pocan.pcompany.main.currency.Moneys;
 import com.pocan.pcompany.modules.DatabaseOperations;
 import com.pocan.pcompany.modules.Notes;
 import com.pocan.pcompany.modules.Statistic;
+import com.pocan.pcompany.swing.HeaderColor;
 import com.sun.org.apache.xerces.internal.impl.xs.SchemaGrammar;
 import java.awt.Color;
+import java.awt.Font;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.text.ParseException;
@@ -48,6 +50,7 @@ public class Main extends javax.swing.JFrame {
         getTableLogs();
         updateNotes();
         updateLabels();
+        updateTables();
     }
 
     /**
@@ -581,9 +584,8 @@ public class Main extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(roundPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         Screen.addTab("tab2", jPanel2);
@@ -755,8 +757,13 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        log_history_table.setGridColor(new java.awt.Color(204, 255, 255));
+        log_history_table.setFocusable(false);
+        log_history_table.setGridColor(new java.awt.Color(128, 128, 128));
+        log_history_table.setRowHeight(25);
         log_history_table.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        log_history_table.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        log_history_table.setShowHorizontalLines(true);
+        log_history_table.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(log_history_table);
         if (log_history_table.getColumnModel().getColumnCount() > 0) {
             log_history_table.getColumnModel().getColumn(0).setResizable(false);
@@ -800,11 +807,11 @@ public class Main extends javax.swing.JFrame {
                         .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
                             .addComponent(jLabel6)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 825, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(roundPanel6Layout.createSequentialGroup()
                         .addGap(343, 343, 343)
                         .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         roundPanel6Layout.setVerticalGroup(
             roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -985,7 +992,21 @@ public class Main extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
+    
+    
+    public void updateTables() {
 
+        log_history_table.getTableHeader().setDefaultRenderer(new HeaderColor());
+        notes_table.getTableHeader().setDefaultRenderer(new HeaderColor());
+        
+    }
+    
+    public void resetSelectedRows() {
+        log_history_table.getSelectionModel().clearSelection();
+        notes_table.getSelectionModel().clearSelection();
+       
+        
+    }
     
     public void updateLabels() {
         float total_money_dollar = databaseOperations.getMoney(databaseOperations.getEarn(), databaseOperations.calculateTax(databaseOperations.getEarn()));
