@@ -57,6 +57,7 @@ public class DatabaseOperations {
     
     
     public float getMoney(int earn, float tax) {
+
         return earn - tax;
         
     }
@@ -64,7 +65,7 @@ public class DatabaseOperations {
     
     public float calculateTax(int earn) {
         
-        return earn * (15 / 100);
+        return earn * 15 / 100;
         
         
     }
@@ -139,7 +140,24 @@ public class DatabaseOperations {
         
         
     }    
-    
+    public void addNotes(String note) {
+        
+        String request = "INSERT Into notes (Notlarım) VALUES (?)";
+        try {
+            preparedStatement = con.prepareCall(request);
+            preparedStatement.setString(1, note);
+
+            preparedStatement.executeUpdate();
+            
+            
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+    }
     public void addStatistic(String date, int customer, int order, int money) {
         
         String request = "INSERT Into economy (Tarih,Müşteri,Sipariş,Cüro) VALUES (?,?,?,?)";
@@ -161,8 +179,33 @@ public class DatabaseOperations {
         
     }
     
-    
-    
+    public void deleteStatistic(String date) {
+        String request = "DELETE from economy where Tarih = ?";
+        try {
+            preparedStatement = con.prepareStatement(request);
+            preparedStatement.setString(1, date);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        
+    }
+ 
+    public void deleteNote(String note) {
+        String request = "DELETE from notes where Notlarım = ?";
+        try {
+            preparedStatement = con.prepareStatement(request);
+            preparedStatement.setString(1, note);
+            preparedStatement.executeUpdate();
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+        
+    } 
     
     public ArrayList<Statistic> getStatistic() {
         ArrayList<Statistic> output = new ArrayList<Statistic>();
@@ -187,7 +230,26 @@ public class DatabaseOperations {
         
     }
     
+    public ArrayList<Notes> getNotes() {
+        ArrayList<Notes> output = new ArrayList<Notes>();
+        try {
+            statement = con.createStatement();
+            String request = "Select * from notes";
+            ResultSet rs = statement.executeQuery(request);
+            
+            while(rs.next()) {
+                String notes = rs.getString("Notlarım");
+                output.add(new Notes(notes));
 
+
+            }
+            return output;
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
+    }
     
     
     public DatabaseOperations() {

@@ -38,7 +38,7 @@ public class Menu extends javax.swing.JPanel {
 
         roundPanel1.setBackground(new java.awt.Color(17, 18, 21));
 
-        home_button.setBackground(new java.awt.Color(51, 51, 51));
+        home_button.setBackground(new java.awt.Color(255, 255, 255));
         home_button.setForeground(new java.awt.Color(255, 255, 255));
         home_button.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -267,7 +267,7 @@ public class Menu extends javax.swing.JPanel {
 
     public RoundPanel selectedMenuPanel;
     private Color defaultMenuColor = new Color(17, 18, 21);
-    private Color selectedMenuColor = new Color(51, 51, 51);
+    private Color selectedMenuColor = new Color(255, 255, 255);
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.pocan.pcompany.swing.RoundPanel home_button;
     private com.pocan.pcompany.swing.RoundPanel home_button1;

@@ -8,6 +8,7 @@ import com.pocan.pcompany.main.currency.Currency;
 import com.pocan.pcompany.main.currency.CurrencyFactory;
 import com.pocan.pcompany.main.currency.Moneys;
 import com.pocan.pcompany.modules.DatabaseOperations;
+import com.pocan.pcompany.modules.Notes;
 import com.pocan.pcompany.modules.Statistic;
 import com.sun.org.apache.xerces.internal.impl.xs.SchemaGrammar;
 import java.awt.Color;
@@ -32,7 +33,7 @@ import javax.swing.table.DefaultTableModel;
  * @author ali
  */
 public class Main extends javax.swing.JFrame {
-    DefaultTableModel model;
+    DefaultTableModel model,model1;
     DatabaseOperations databaseOperations = new DatabaseOperations();
 
 
@@ -43,7 +44,9 @@ public class Main extends javax.swing.JFrame {
         initComponents();
         setBackground(new Color(0, 0, 0));
         model = (DefaultTableModel) log_history_table.getModel();
+        model1 = (DefaultTableModel) notes_table.getModel();
         getTableLogs();
+        updateNotes();
         updateLabels();
     }
 
@@ -100,16 +103,27 @@ public class Main extends javax.swing.JFrame {
         customer_label = new javax.swing.JLabel();
         money_label = new javax.swing.JLabel();
         create_log_button = new com.k33ptoo.components.KButton();
+        calendar_value = new javax.swing.JTextField();
+        calendar_label = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         roundPanel8 = new com.pocan.pcompany.swing.RoundPanel();
+        delete_notes_button = new com.k33ptoo.components.KButton();
         jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        notes_table = new javax.swing.JTable();
+        roundPanel9 = new com.pocan.pcompany.swing.RoundPanel();
+        notebook_label = new javax.swing.JLabel();
+        note_value = new javax.swing.JTextField();
+        add_notes_button = new com.k33ptoo.components.KButton();
         jPanel4 = new javax.swing.JPanel();
         roundPanel6 = new com.pocan.pcompany.swing.RoundPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         log_history_table = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        delete_button = new com.k33ptoo.components.KButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
 
@@ -139,9 +153,9 @@ public class Main extends javax.swing.JFrame {
         });
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         bg.add(header2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 199, -1));
-        bg.add(menu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 55, 149, -1));
+        bg.add(menu2, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 55, 149, 650));
 
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 710));
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 700));
 
         jPanel1.setPreferredSize(new java.awt.Dimension(900, 717));
 
@@ -422,7 +436,7 @@ public class Main extends javax.swing.JFrame {
 
         jLabel15.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Günlük kayıt oluştur");
+        jLabel15.setText("Kayıt oluştur");
 
         roundPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -458,6 +472,12 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        calendar_value.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        calendar_value.setText("18/09/1990");
+        calendar_value.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
+
+        calendar_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/calendar.png"))); // NOI18N
+
         javax.swing.GroupLayout roundPanel7Layout = new javax.swing.GroupLayout(roundPanel7);
         roundPanel7.setLayout(roundPanel7Layout);
         roundPanel7Layout.setHorizontalGroup(
@@ -466,42 +486,44 @@ public class Main extends javax.swing.JFrame {
                 .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(roundPanel7Layout.createSequentialGroup()
                         .addGap(102, 102, 102)
+                        .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(earn_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(order_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(customer_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(calendar_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(roundPanel7Layout.createSequentialGroup()
-                                .addComponent(customer_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(customer_label))
-                            .addGroup(roundPanel7Layout.createSequentialGroup()
-                                .addComponent(earn_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(money_label))
-                            .addGroup(roundPanel7Layout.createSequentialGroup()
-                                .addComponent(order_value, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(order_label))))
+                            .addComponent(order_label)
+                            .addComponent(money_label)
+                            .addComponent(customer_label)
+                            .addComponent(calendar_label)))
                     .addGroup(roundPanel7Layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
+                        .addGap(160, 160, 160)
                         .addComponent(create_log_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(130, Short.MAX_VALUE))
+                .addContainerGap(112, Short.MAX_VALUE))
         );
         roundPanel7Layout.setVerticalGroup(
             roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel7Layout.createSequentialGroup()
-                .addGap(78, 78, 78)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(customer_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(customer_label))
-                .addGap(51, 51, 51)
+                    .addComponent(calendar_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(calendar_label))
+                .addGap(27, 27, 27)
                 .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(order_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(order_label))
-                .addGap(57, 57, 57)
-                .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(customer_label)
+                    .addComponent(customer_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(order_label)
+                    .addComponent(order_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(roundPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(earn_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(money_label))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
                 .addComponent(create_log_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47))
+                .addGap(57, 57, 57))
         );
 
         jLabel3.setForeground(new java.awt.Color(102, 102, 102));
@@ -512,23 +534,28 @@ public class Main extends javax.swing.JFrame {
         roundPanel5Layout.setHorizontalGroup(
             roundPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel5Layout.createSequentialGroup()
-                .addGap(180, 180, 180)
+                .addContainerGap(221, Short.MAX_VALUE)
                 .addGroup(roundPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(roundPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15))
-                .addContainerGap(181, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(331, 331, 331))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel5Layout.createSequentialGroup()
+                        .addComponent(roundPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(158, 158, 158))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(298, 298, 298))))
         );
         roundPanel5Layout.setVerticalGroup(
             roundPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel5Layout.createSequentialGroup()
-                .addGap(60, 60, 60)
+                .addGap(48, 48, 48)
                 .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel3)
-                .addGap(20, 20, 20)
+                .addGap(40, 40, 40)
                 .addComponent(roundPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -550,25 +577,132 @@ public class Main extends javax.swing.JFrame {
 
         roundPanel8.setBackground(new java.awt.Color(17, 18, 21));
 
+        delete_notes_button.setText("Sil");
+        delete_notes_button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        delete_notes_button.setkEndColor(new java.awt.Color(255, 255, 255));
+        delete_notes_button.setkHoverEndColor(new java.awt.Color(204, 204, 204));
+        delete_notes_button.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        delete_notes_button.setkHoverStartColor(new java.awt.Color(153, 153, 153));
+        delete_notes_button.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        delete_notes_button.setkStartColor(new java.awt.Color(0, 0, 0));
+        delete_notes_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_notes_buttonActionPerformed(evt);
+            }
+        });
+
         jLabel17.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Çok Yakında Credit Pocan");
+        jLabel17.setText("Notlarım");
+
+        jLabel18.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel18.setText("Aklınıza gelen şeyleri unutmayın kayıt edin");
+
+        notes_table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Notlar"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        notes_table.setGridColor(new java.awt.Color(204, 255, 255));
+        notes_table.setSelectionBackground(new java.awt.Color(0, 0, 0));
+        jScrollPane2.setViewportView(notes_table);
+        if (notes_table.getColumnModel().getColumnCount() > 0) {
+            notes_table.getColumnModel().getColumn(0).setResizable(false);
+        }
+
+        roundPanel9.setBackground(new java.awt.Color(255, 255, 255));
+
+        notebook_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/notebook.png"))); // NOI18N
+
+        note_value.setFont(new java.awt.Font("Segoe UI Semilight", 0, 18)); // NOI18N
+        note_value.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(153, 153, 153)));
+
+        javax.swing.GroupLayout roundPanel9Layout = new javax.swing.GroupLayout(roundPanel9);
+        roundPanel9.setLayout(roundPanel9Layout);
+        roundPanel9Layout.setHorizontalGroup(
+            roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel9Layout.createSequentialGroup()
+                .addGap(72, 72, 72)
+                .addComponent(note_value, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(notebook_label)
+                .addContainerGap(68, Short.MAX_VALUE))
+        );
+        roundPanel9Layout.setVerticalGroup(
+            roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roundPanel9Layout.createSequentialGroup()
+                .addGap(69, 69, 69)
+                .addGroup(roundPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(note_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(notebook_label))
+                .addContainerGap(114, Short.MAX_VALUE))
+        );
+
+        add_notes_button.setText("Ekle");
+        add_notes_button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        add_notes_button.setkEndColor(new java.awt.Color(255, 255, 255));
+        add_notes_button.setkHoverEndColor(new java.awt.Color(204, 204, 204));
+        add_notes_button.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        add_notes_button.setkHoverStartColor(new java.awt.Color(153, 153, 153));
+        add_notes_button.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        add_notes_button.setkStartColor(new java.awt.Color(0, 0, 0));
+        add_notes_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                add_notes_buttonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout roundPanel8Layout = new javax.swing.GroupLayout(roundPanel8);
         roundPanel8.setLayout(roundPanel8Layout);
         roundPanel8Layout.setHorizontalGroup(
             roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel8Layout.createSequentialGroup()
-                .addGap(119, 119, 119)
-                .addComponent(jLabel17)
-                .addContainerGap(350, Short.MAX_VALUE))
+                .addGroup(roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roundPanel8Layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(add_notes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(127, 127, 127)
+                        .addComponent(delete_notes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roundPanel8Layout.createSequentialGroup()
+                        .addGap(99, 99, 99)
+                        .addGroup(roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(roundPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2)))
+                    .addGroup(roundPanel8Layout.createSequentialGroup()
+                        .addGap(370, 370, 370)
+                        .addComponent(jLabel17))
+                    .addGroup(roundPanel8Layout.createSequentialGroup()
+                        .addGap(330, 330, 330)
+                        .addComponent(jLabel18)))
+                .addContainerGap(130, Short.MAX_VALUE))
         );
         roundPanel8Layout.setVerticalGroup(
             roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roundPanel8Layout.createSequentialGroup()
-                .addGap(77, 77, 77)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel17)
-                .addContainerGap(598, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel18)
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 220, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(roundPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(roundPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(add_notes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(delete_notes_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(89, 89, 89))
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -606,12 +740,17 @@ public class Main extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        log_history_table.setGridColor(new java.awt.Color(204, 255, 255));
+        log_history_table.setSelectionBackground(new java.awt.Color(0, 0, 0));
         jScrollPane1.setViewportView(log_history_table);
         if (log_history_table.getColumnModel().getColumnCount() > 0) {
             log_history_table.getColumnModel().getColumn(0).setResizable(false);
             log_history_table.getColumnModel().getColumn(1).setResizable(false);
+            log_history_table.getColumnModel().getColumn(1).setHeaderValue("Müşteri");
             log_history_table.getColumnModel().getColumn(2).setResizable(false);
+            log_history_table.getColumnModel().getColumn(2).setHeaderValue("Sipariş");
             log_history_table.getColumnModel().getColumn(3).setResizable(false);
+            log_history_table.getColumnModel().getColumn(3).setHeaderValue("Cüro");
         }
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
@@ -621,28 +760,49 @@ public class Main extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(102, 102, 102));
         jLabel11.setText("Şirketinizin özet kayıtlarını inceleyin.");
 
+        delete_button.setText("Sil");
+        delete_button.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        delete_button.setkEndColor(new java.awt.Color(255, 255, 255));
+        delete_button.setkHoverEndColor(new java.awt.Color(204, 204, 204));
+        delete_button.setkHoverForeGround(new java.awt.Color(0, 0, 0));
+        delete_button.setkHoverStartColor(new java.awt.Color(153, 153, 153));
+        delete_button.setkSelectedColor(new java.awt.Color(0, 0, 0));
+        delete_button.setkStartColor(new java.awt.Color(0, 0, 0));
+        delete_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delete_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout roundPanel6Layout = new javax.swing.GroupLayout(roundPanel6);
         roundPanel6.setLayout(roundPanel6Layout);
         roundPanel6Layout.setHorizontalGroup(
             roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel6Layout.createSequentialGroup()
-                .addContainerGap(126, Short.MAX_VALUE)
+            .addGroup(roundPanel6Layout.createSequentialGroup()
                 .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 700, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(74, 74, 74))
+                    .addGroup(roundPanel6Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addGroup(roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 814, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(roundPanel6Layout.createSequentialGroup()
+                        .addGap(343, 343, 343)
+                        .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         roundPanel6Layout.setVerticalGroup(
             roundPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roundPanel6Layout.createSequentialGroup()
-                .addGap(48, 48, 48)
+                .addGap(36, 36, 36)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel11)
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(delete_button, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -703,13 +863,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_bgMouseMoved
 
     private void create_log_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create_log_buttonActionPerformed
+        String date = calendar_value.getText();
         int customer = Integer.valueOf(customer_value.getText());
         int order = Integer.valueOf(order_value.getText());
         int money = Integer.valueOf(earn_value.getText());
-        Date d = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+      //  Date d = new Date();
+      //  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        String date = dateFormat.format(d);
+      //  String date = dateFormat.format(d);
  
         if (customer >= 0 && order >= 0 && money >= 0 && !databaseOperations.dateCheck().contains(date)) {
             databaseOperations.addStatistic(date, customer, order, money);
@@ -738,6 +899,73 @@ public class Main extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_create_log_buttonActionPerformed
+
+    private void delete_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_buttonActionPerformed
+        int selectedRow = log_history_table.getSelectedRow();
+        if (selectedRow == -1) {
+            if (model.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this,"Veri tabanı şuan da boş.","Hata",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(this,"Herhangi bir değer seçilmedi.","Hata",JOptionPane.ERROR_MESSAGE);
+      
+            }
+        }
+        else {
+            String date = (String) model.getValueAt(selectedRow, 0);
+            databaseOperations.deleteStatistic(date);
+            getTableLogs();
+            updateLabels();
+            JOptionPane.showMessageDialog(this,"Başarıyla seçmiş olduğunuz veriyi sildiniz.","Başarılı",JOptionPane.PLAIN_MESSAGE);
+
+        }
+
+
+
+
+
+
+
+
+
+    }//GEN-LAST:event_delete_buttonActionPerformed
+
+    private void delete_notes_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delete_notes_buttonActionPerformed
+        int selectedRow = notes_table.getSelectedRow();
+        if (selectedRow == -1) {
+            if (model1.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(this,"Notlar şuan da boş.","Hata",JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                JOptionPane.showMessageDialog(this,"Herhangi bir not seçilmedi.","Hata",JOptionPane.ERROR_MESSAGE);
+      
+            }
+        }
+        else {
+            String note = (String) model1.getValueAt(selectedRow, 0);
+            databaseOperations.deleteNote(note);
+            updateNotes();
+            updateLabels();
+            JOptionPane.showMessageDialog(this,"Başarıyla seçmiş olduğunuz notu sildiniz.","Başarılı",JOptionPane.PLAIN_MESSAGE);
+
+        }
+    }//GEN-LAST:event_delete_notes_buttonActionPerformed
+
+    private void add_notes_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_notes_buttonActionPerformed
+        String note = note_value.getText();
+        if (!note.isEmpty()) {
+            databaseOperations.addNotes(note);
+            note_value.setText("");
+            JOptionPane.showMessageDialog(this,"Başarıyla yeni notunuzu eklediniz.","Başarılı",JOptionPane.PLAIN_MESSAGE);
+            updateNotes();
+
+        }
+        else {
+            JOptionPane.showMessageDialog(this,"Notun içerisi boş olamaz.","Hata",JOptionPane.ERROR_MESSAGE);
+ 
+        }
+
+    }//GEN-LAST:event_add_notes_buttonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -804,9 +1032,30 @@ public class Main extends javax.swing.JFrame {
         weekly_dollar_text.setText("$ " + databaseOperations.getHumanReadablePriceFromNumber((long) weekly_money_dollar));
         monthly_try_text.setText("₺ " + databaseOperations.getHumanReadablePriceFromNumber((long) monthly_money_try));
         monthly_dollar_text.setText("$ " + databaseOperations.getHumanReadablePriceFromNumber((long) monthly_money_dollar));
-           
+        Date d = new Date();
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        calendar_value.setText(dateFormat.format(d));
+
         
     }
+    
+    public void updateNotes() {
+        model1.setRowCount(0);
+        ArrayList<Notes> notes = new ArrayList<Notes>();
+        notes = databaseOperations.getNotes(); 
+        if (notes != null) {
+            
+            for(Notes n : notes) {
+                Object[] add = {n.getNote()};
+                model1.addRow(add);
+                
+            }
+            
+        }
+        
+    }
+    
+    
     
     public void getTableLogs() {
         model.setRowCount(0);
@@ -850,9 +1099,12 @@ public class Main extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JTabbedPane Screen;
+    private com.k33ptoo.components.KButton add_notes_button;
     private javax.swing.JLabel alltime_dollar_text;
     private javax.swing.JLabel alltime_try_text;
     private com.pocan.pcompany.swing.RoundPanel bg;
+    private javax.swing.JLabel calendar_label;
+    private javax.swing.JTextField calendar_value;
     private com.k33ptoo.components.KButton create_log_button;
     private javax.swing.JLabel customer_label;
     private javax.swing.JTextField customer_value;
@@ -860,6 +1112,8 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel daily_try_text;
     private javax.swing.JLabel dashboard_sub_text;
     private javax.swing.JLabel dashboard_text;
+    private com.k33ptoo.components.KButton delete_button;
+    private com.k33ptoo.components.KButton delete_notes_button;
     private javax.swing.JTextField earn_value;
     private com.pocan.pcompany.component.Header header2;
     private javax.swing.JDesktopPane jDesktopPane1;
@@ -872,6 +1126,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -887,12 +1142,16 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     public javax.swing.JTable log_history_table;
     private com.pocan.pcompany.swing.RoundPanel main_screen;
     private com.pocan.pcompany.component.Menu menu2;
     private javax.swing.JLabel money_label;
     private javax.swing.JLabel monthly_dollar_text;
     private javax.swing.JLabel monthly_try_text;
+    private javax.swing.JTextField note_value;
+    private javax.swing.JLabel notebook_label;
+    public javax.swing.JTable notes_table;
     private javax.swing.JLabel order_label;
     private javax.swing.JTextField order_value;
     private com.pocan.pcompany.swing.RoundPanel roundPanel1;
@@ -903,6 +1162,7 @@ public class Main extends javax.swing.JFrame {
     private com.pocan.pcompany.swing.RoundPanel roundPanel6;
     private com.pocan.pcompany.swing.RoundPanel roundPanel7;
     private com.pocan.pcompany.swing.RoundPanel roundPanel8;
+    private com.pocan.pcompany.swing.RoundPanel roundPanel9;
     private javax.swing.JLabel weekly_dollar_text;
     private javax.swing.JLabel weekly_try_text;
     // End of variables declaration//GEN-END:variables
