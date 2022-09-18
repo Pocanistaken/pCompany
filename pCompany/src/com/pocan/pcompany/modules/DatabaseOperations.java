@@ -20,7 +20,8 @@ public class DatabaseOperations {
     private Connection con = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
-    
+    private Boolean result;
+
     public String getHumanReadablePriceFromNumber(long number){
 
         if(number >= 1000000000){
@@ -158,6 +159,9 @@ public class DatabaseOperations {
         
         
     }
+    
+    
+    
     public void addStatistic(String date, int customer, int order, int money) {
         
         String request = "INSERT Into economy (Tarih,Müşteri,Sipariş,Cüro) VALUES (?,?,?,?)";
@@ -250,6 +254,24 @@ public class DatabaseOperations {
         }
         
     }
+    
+    public Boolean loginPanel(String username, String password) {
+        try {
+            String request = "Select * from admins where Username = ? and Password = ?";
+            preparedStatement = con.prepareStatement(request);
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet rs = preparedStatement.executeQuery();
+            result = rs.next();
+            return result;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(DatabaseOperations.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        }
+        
+    } 
     
     
     public DatabaseOperations() {
