@@ -1,5 +1,6 @@
 # pCompany
 
+Mysql based company project
 
 ![image](https://user-images.githubusercontent.com/51020037/191020220-11a935e9-7265-400d-894b-0854c1945cb1.png)
 ![image](https://user-images.githubusercontent.com/51020037/191020311-20cef44f-ed21-4de5-8504-b0bee7f504d8.png)
