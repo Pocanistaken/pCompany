@@ -9,6 +9,7 @@ import com.pocan.pcompany.modules.FileModule;
 import com.pocan.pcompany.modules.TrayIconDemo;
 import com.pocan.pcompany.tasks.CheckTask;
 import java.awt.AWTException;
+import java.awt.Frame;
 import java.awt.SystemTray;
 import java.awt.geom.RoundRectangle2D;
 import java.io.File;
@@ -158,6 +159,11 @@ public class LoginFrame extends javax.swing.JFrame {
         white_circle_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/white_circle25x25.png"))); // NOI18N
 
         orange_circle_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/orange_circle_25x25.png"))); // NOI18N
+        orange_circle_label.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orange_circle_labelMouseClicked(evt);
+            }
+        });
 
         red_circle_label.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/red_circle_25x25.png"))); // NOI18N
         red_circle_label.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -328,6 +334,10 @@ public class LoginFrame extends javax.swing.JFrame {
     private void red_circle_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_red_circle_labelMouseClicked
         System.exit(0);
     }//GEN-LAST:event_red_circle_labelMouseClicked
+
+    private void orange_circle_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orange_circle_labelMouseClicked
+        this.setState(Frame.ICONIFIED);
+    }//GEN-LAST:event_orange_circle_labelMouseClicked
 
     /**
      * @param args the command line arguments

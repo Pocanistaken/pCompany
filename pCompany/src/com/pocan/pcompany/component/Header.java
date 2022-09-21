@@ -1,13 +1,17 @@
 
 package com.pocan.pcompany.component;
 
+import com.pocan.pcompany.main.Main;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 
 public class Header extends javax.swing.JPanel {
@@ -52,6 +56,11 @@ public class Header extends javax.swing.JPanel {
         });
 
         orange_circle_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/orange_circle_25x25.png"))); // NOI18N
+        orange_circle_icon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                orange_circle_iconMouseClicked(evt);
+            }
+        });
 
         white_circle_icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/pocan/pcompany/icon/white_circle25x25.png"))); // NOI18N
 
@@ -83,6 +92,16 @@ public class Header extends javax.swing.JPanel {
     private void red_circle_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_red_circle_iconMouseClicked
     System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_red_circle_iconMouseClicked
+
+    private void orange_circle_iconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_orange_circle_iconMouseClicked
+
+
+    JFrame f = (JFrame) SwingUtilities.getAncestorOfClass(Main.class, this);
+    f.setState(Frame.ICONIFIED);
+
+
+        
+    }//GEN-LAST:event_orange_circle_iconMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

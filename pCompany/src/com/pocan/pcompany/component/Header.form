@@ -58,6 +58,9 @@
           <Image iconType="3" name="/com/pocan/pcompany/icon/orange_circle_25x25.png"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="orange_circle_iconMouseClicked"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="white_circle_icon">
       <Properties>

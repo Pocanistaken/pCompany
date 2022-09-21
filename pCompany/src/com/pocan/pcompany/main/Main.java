@@ -4,6 +4,7 @@
  */
 package com.pocan.pcompany.main;
 
+import com.pocan.pcompany.component.Header;
 import com.pocan.pcompany.main.currency.Currency;
 import com.pocan.pcompany.main.currency.CurrencyFactory;
 import com.pocan.pcompany.main.currency.Moneys;
@@ -25,9 +26,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -1057,6 +1060,11 @@ public class Main extends javax.swing.JFrame {
             
         }
         
+    }
+    
+    public JFrame getFrame() {
+        
+        return this;
     }
     
     
