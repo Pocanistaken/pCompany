@@ -5,8 +5,14 @@
 package com.pocan.pcompany.main;
 
 import com.pocan.pcompany.modules.DatabaseOperations;
+import com.pocan.pcompany.modules.FileModule;
+import com.pocan.pcompany.modules.TrayIconDemo;
+import com.pocan.pcompany.tasks.CheckTask;
+import java.awt.AWTException;
+import java.awt.SystemTray;
 import java.awt.geom.RoundRectangle2D;
 import java.sql.Connection;
+import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -17,7 +23,7 @@ import javax.swing.JFrame;
  * @author Pocan
  */
 public class LoginFrame extends javax.swing.JFrame {
-    
+
     DatabaseOperations databaseOperations = new DatabaseOperations();
 
     /**
@@ -291,6 +297,8 @@ public class LoginFrame extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        Timer timer = new Timer();
+        timer.schedule(new CheckTask(), 0,60000);
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -319,6 +327,11 @@ public class LoginFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new LoginFrame().setVisible(true);
+                TrayIconDemo td = new TrayIconDemo();
+                td.displayTray("Heaven", "Program başlatıldı");
+                //FileModule fileModule = new FileModule();
+
+                //fileModule.createFolder();
             }
         });
     }
