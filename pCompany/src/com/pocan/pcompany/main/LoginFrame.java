@@ -34,6 +34,8 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame() {
         initComponents();
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
+        fileModule.createFolder();
+
         fileModule.createFile("username");
         fileModule.createFile("password");
    
@@ -363,9 +365,7 @@ public class LoginFrame extends javax.swing.JFrame {
                 new LoginFrame().setVisible(true);
                 TrayIconDemo td = new TrayIconDemo();
                 td.displayTray("Heaven", "Program başlatıldı");
-                //FileModule fileModule = new FileModule();
 
-                //fileModule.createFolder();
             }
         });
     }
