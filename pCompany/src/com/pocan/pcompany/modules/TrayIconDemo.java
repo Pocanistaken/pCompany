@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,11 +19,11 @@ public class TrayIconDemo {
         if (SystemTray.isSupported()) {
             //Obtain only one instance of the SystemTray object
             SystemTray tray = SystemTray.getSystemTray();
-            //URL url = System.class.getResource("/com/pocan/pcompany/icon/runheaven.png");
+            URL url = System.class.getResource("/com/pocan/pcompany/icon/runheaven.png");
             //String file = "C:\\\\Users\\\\" + System.getProperty("user.name") + "\\Desktop\\" + "runheaven.png";
 
             //If the icon is a file
-            Image image = Toolkit.getDefaultToolkit().getImage("./src/com/pocan/pcompany/icon/runheaven.png");
+            Image image = Toolkit.getDefaultToolkit().getImage(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Heaven" + File.separator + "runheaven.png");
 
             MouseListener mouseListener = new MouseListener() {
 

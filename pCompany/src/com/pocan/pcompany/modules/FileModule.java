@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.logging.Level;
@@ -31,14 +32,30 @@ public class FileModule {
         }
     }
     
-/*    public void writeFile() {
-        Path path = Paths.get(System.getProperty("user.home" + File.separator + "Documents" + File.separator + "Heaven"));
-        File file = new File("user.home" + File.separator + "Documents" + File.separator + "Heaven" + File.separator + "runheaven.png");
-        URL image = System.class.getResource("/com/pocan/pcompany/icon/runheaven.png");
+    public void createFile(String filename) {
+  
+        try {
+          File file = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Heaven" + File.separator + filename + ".txt");
+          if (file.createNewFile()) {
+            System.out.println("File created: " + file.getName());
+          } else {
+            System.out.println("File already exists.");
+          }
+        } catch (IOException e) {
+          System.out.println("An error occurred.");
+          e.printStackTrace();
+        }
+  }
+    
+    public void writeFile(String filename, String writeData) {
+        //Path path = Paths.get(System.getProperty("user.home" + File.separator + "Documents" + File.separator + "Heaven"));
+        
+        
+        File file = new File(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Heaven" + File.separator + filename + ".txt");
    
         try {
             FileWriter fileWriter = new FileWriter(file);
-            fileWriter.write();
+            fileWriter.write(writeData);
             fileWriter.close();
         } catch (IOException ex) {
             Logger.getLogger(FileModule.class.getName()).log(Level.SEVERE, null, ex);
@@ -46,6 +63,17 @@ public class FileModule {
         
         
     }
-*/
+    public static String readFileAsString(String fileName) {
+          String data = "";
+        try {
+            data = new String(Files.readAllBytes(Paths.get(fileName)));
+            return data;
+
+        } catch (IOException ex) {
+            Logger.getLogger(FileModule.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
    
 }

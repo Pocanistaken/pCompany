@@ -11,6 +11,7 @@ import com.pocan.pcompany.tasks.CheckTask;
 import java.awt.AWTException;
 import java.awt.SystemTray;
 import java.awt.geom.RoundRectangle2D;
+import java.io.File;
 import java.sql.Connection;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
@@ -23,6 +24,7 @@ import javax.swing.JFrame;
  * @author Pocan
  */
 public class LoginFrame extends javax.swing.JFrame {
+        FileModule fileModule = new FileModule();
 
     DatabaseOperations databaseOperations = new DatabaseOperations();
 
@@ -31,8 +33,13 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
-        
         setShape(new RoundRectangle2D.Double(0, 0, getWidth(), getHeight(), 50, 50));
+        fileModule.createFile("username");
+        fileModule.createFile("password");
+   
+        username_value.setText(getUsername());
+        password_value.setText(getPassword());
+        
     }
 
     /**
@@ -223,7 +230,7 @@ public class LoginFrame extends javax.swing.JFrame {
                     .addComponent(username_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(42, 42, 42)
-                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(bgLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(password_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(password_label))
                 .addGap(43, 43, 43)
@@ -269,6 +276,7 @@ public class LoginFrame extends javax.swing.JFrame {
     private void login_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_login_buttonActionPerformed
         output.setText("");
         if (databaseOperations.loginPanel(username_value.getText(),String.valueOf(password_value.getPassword()))) {
+            RememberMe();
             System.out.println("Giriş başarılı");
             output.setText("                  Giriş yapılıyor...");
             output.setForeground(new java.awt.Color(51, 255, 0));
@@ -289,6 +297,32 @@ public class LoginFrame extends javax.swing.JFrame {
      
     }//GEN-LAST:event_login_buttonActionPerformed
 
+    public void RememberMe() {
+       if (remember_me.isSelected()) {
+           fileModule.writeFile("username", username_value.getText());
+           fileModule.writeFile("password", String.valueOf(password_value.getPassword()));
+           System.out.println("Başarıyla kullanıcı adı ve şifre kayıt edildi (Remember Me)");
+                   
+           
+       } 
+    }
+    
+    public String getUsername() {
+        
+        String username = fileModule.readFileAsString(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Heaven" + File.separator + "username.txt");
+        if (!username.isEmpty()) {
+            return username;
+        }
+        return "kullanıcı adı";
+    }
+    public String getPassword() {
+        
+        String password = fileModule.readFileAsString(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "Heaven" + File.separator + "password.txt");
+        if (!password.isEmpty()) {
+            return password;
+        }
+        return "************";
+    }
     private void red_circle_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_red_circle_labelMouseClicked
         System.exit(0);
     }//GEN-LAST:event_red_circle_labelMouseClicked
