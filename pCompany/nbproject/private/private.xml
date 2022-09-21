@@ -5,8 +5,9 @@
         <group>
             <file>file:/C:/Users/ali/Documents/NetBeansProjects/pCompany/src/com/pocan/pcompany/modules/DatabaseOperations.java</file>
             <file>file:/C:/Users/ali/Documents/NetBeansProjects/pCompany/src/com/pocan/pcompany/main/LoginFrame.java</file>
+            <file>file:/C:/Users/ali/Documents/NetBeansProjects/pCompany/src/com/pocan/pcompany/modules/TrayIconDemo.java</file>
             <file>file:/C:/Users/ali/Documents/NetBeansProjects/pCompany/src/com/pocan/pcompany/main/Main.java</file>
-            <file>file:/C:/Users/ali/Documents/NetBeansProjects/pCompany/src/com/pocan/pcompany/swing/HeaderColor.java</file>
+            <file>file:/C:/Users/ali/Documents/NetBeansProjects/pCompany/src/com/pocan/pcompany/tasks/CheckTask.java</file>
         </group>
     </open-files>
 </project-private>
