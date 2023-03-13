@@ -37,7 +37,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`Username`, `Password`) VALUES
-('runheaven', 'Emk159624');
+('runheaven', 'admin');
 
 -- --------------------------------------------------------
 
