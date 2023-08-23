@@ -1,7 +1,7 @@
 # pCompany
 
 Mysql based company project
-
+It's my first Java project.I'm coded this project for my friend beacuse he has a company he said me like I need something like this application and I made it xD
 ![image](https://user-images.githubusercontent.com/51020037/191020220-11a935e9-7265-400d-894b-0854c1945cb1.png)
 ![image](https://user-images.githubusercontent.com/51020037/191020311-20cef44f-ed21-4de5-8504-b0bee7f504d8.png)
 ![image](https://user-images.githubusercontent.com/51020037/191020350-f2434fae-c38a-44bc-aea8-263e7fa7b5cf.png)
